@@ -1,6 +1,7 @@
 # «صفحه انتخاب صندلی سینما»
 
-![image](https://github.com/YSNSHB/Selected-Seat-Website/assets/109143007/2cca42ba-21fd-4397-b2f5-366b8d08d844)
+![image](https://github.com/YSNSHB/Selected-Seat-Website/assets/109143007/48d227d9-b98e-4995-b5a0-2a306c9cad82)
+
 
 ## مدت‌زمان انجام پروژه:
 20 ساعت در 5 روز
