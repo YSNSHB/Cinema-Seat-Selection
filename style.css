@@ -1,0 +1,1359 @@
+/*
+<body>
+    <!--Header-->
+        <!--Header Content-->
+            <!--Logo-->
+            <!--Step Line-->
+            <!--BackHome Link-->
+        <!--Toast-->
+
+
+
+    <!--Seat Selection-->
+        <!--View of the Cinema Hall-->
+            <!--Cinema Hall-->
+                <!--Cinema Screen-->
+                <!--Seats Row Number-->
+                <!--Main Cinema Hall-->
+
+
+            <!--Cinema Hall information-->
+                <!--Cinema Hall Capacity-->
+                <!--Seat Modles-->
+
+
+        M.S.P. => Movie, Selected Seat and Price
+        <!--M.S.P. Information-->
+            <!--Movie information-->
+            <!--Selected Seat information-->
+            <!--Discount Code information-->
+            <!--Price information-->
+</body>
+*/
+
+
+
+
+/* ----Fonts---- */
+@font-face {
+    font-family: DanaFaNum-DemiBold;
+    src: url(./Fonts/DanaFaNum-DemiBold.ttf);
+}
+@font-face {
+    font-family: DanaFaNum-Medium;
+    src: url(./Fonts/DanaFaNum-Medium.ttf);
+}
+@font-face {
+    font-family: DanaFaNum-Regular;
+    src: url(./Fonts/DanaFaNum-Regular.ttf);
+}
+@font-face {
+    font-family: DanaFaNum-Bold;
+    src: url(./Fonts/DanaFaNum-Bold.ttf);
+}
+@font-face {
+    font-family: DanaFaNum-ExtraBold;
+    src: url(./Fonts/DanaFaNum-ExtraBold.ttf);
+}
+
+/* ----Var---- */
+:root {
+    --primaryColor: rgba(255, 191, 51, 1);
+    --secondaryColor: rgba(24, 24, 24, 1);
+    --bodyColor: rgba(17, 17, 19, 1);
+    --hover: rgba(255, 255, 255, 0.1);
+    --seatReserved: rgba(36, 35, 34, 1);
+    --seatEmpty: rgba(255, 255, 255, 0.8);
+    --seatunreservable: rgba(255, 255, 255, 0.2);
+    --mainWhite: rgba(255, 255, 255, 1);
+    --mainBlack: rgba(17, 17, 19, 0.99);
+    --mainGrey: rgba(65, 65, 66, 1);
+    --mainRed: rgba(255, 51, 51, 1);
+    --medium: DanaFaNum-Medium;
+    --demiBold: DanaFaNum-DemiBold;
+    --regular: DanaFaNum-Regular;
+    --bold: DanaFaNum-Bold;
+    --extraBold: DanaFaNum-ExtraBold;
+}
+
+/* ----Scrollbar---- */
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(217, 217, 217, 0.1);
+    border-radius: 82px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(217, 217, 217, 1); 
+    border-radius: 82px;
+}
+
+/* ----Animation---- */
+@-webkit-keyframes slideIn-mobile {
+    from {bottom: -167px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+@keyframes slideIn-mobile {
+    from {bottom: -167px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+@-webkit-keyframes slideIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+@keyframes slideIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+@-webkit-keyframes fadeIn-discount {
+    from {opacity: 0} 
+    to {opacity: 1}   
+}
+@keyframes fadeIn-discount {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@-webkit-keyframes fadein-toast-mobile {
+    from {top: -32px; opacity: 0;}
+    to {top: 0; opacity: 1;}
+}
+@keyframes fadein-toast-mobile {
+    from {top: -32px; opacity: 0;}
+    to {top: 0; opacity: 1;}
+}
+@-webkit-keyframes fadeout-toast-mobile {
+    from {top: 0; opacity: 1;}
+    to {top: -32px; opacity: 0;}
+}
+@keyframes fadeout-toast-mobile {
+    from {top: 0; opacity: 1;}
+    to {top: -32px; opacity: 0;}
+}
+@-webkit-keyframes fadein-toast {
+    from {top: 0; opacity: 0;}
+    to {top: 48px; opacity: 1;}
+}
+@keyframes fadein-toast {
+    from {top: 0; opacity: 0;}
+    to {top: 48px; opacity: 1;}
+}
+@-webkit-keyframes fadeout-toast {
+    from {top: 48px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+@keyframes fadeout-toast {
+    from {top: 48px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+
+/* ---Body Style--- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    color: var(--mainWhite);
+    background-color: var(--bodyColor);
+    overflow: hidden;
+}
+p {
+    cursor: default;
+}
+
+
+
+
+
+/* ----Header---- */
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-center {
+    width: 100%;
+    height: 56px;
+    margin: 32px 12px 0 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* ---Step Line--- */
+.step-line-section {
+    display: none;
+}
+/* ---BackHome Link--- */
+.backhome-link {
+    width: auto;
+    height: 40px;
+    padding: 4px 8px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--bodyColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color: var(--mainWhite);
+    font-family: var(--extraBold);
+    font-size: 13px;
+    transition: background-color 0.1s linear;
+    cursor: pointer;
+}
+.backhome-link:hover {
+    background-color: var(--hover);
+}
+
+
+
+/* ---Toast--- */
+.toast {
+    position: fixed;
+    width: calc(100% - 24px);
+    max-width: 517px;
+    height: 56px;
+    margin: 32px 12px 0 12px;
+    padding: 12px;
+    border-radius: 18px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.2);
+    background-color: var(--secondaryColor);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    visibility: hidden;
+    z-index: 1;
+}
+.show {
+    visibility: visible;
+    -webkit-animation: fadein-toast-mobile 0.5s, fadeout-toast-mobile 0.5s 3.5s;
+    animation: fadein-toast-mobile 0.5s, fadeout-toast-mobile 0.5s 3.5s;
+}
+.toast-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 13px;
+}
+.toast-img {
+    width: 32px;
+    height: 32px;
+}
+.toast-text {
+    font-family: var(--demiBold);
+    font-size: 13px;
+}
+
+
+
+
+
+/* -----Seat Selection----- */
+.seat-selection-section {
+    width: 100%;
+    height: calc(100vh - 88px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.seat-selection-section-center {
+    width: 100%;
+    height: calc(100% - 18px);
+    margin: 6px 12px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+
+/* ----View of the CinemaHall---- */
+.view-of-the-cinema-hall {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 341px); /* calc(100% - 407px) */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+/* ---Cinema Hall--- */
+.cinema-hall {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+}
+.cinema-hall-center {
+    position: relative;
+    width: 324.49px;
+    height: 307.12px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+/* --Cinema Screen-- */
+.cinema-screen {
+    position: absolute;
+    top: 0.01px;
+    left: -3.67px;
+    width: 313.78px;
+    height: 106.17px;
+}
+/* --Seat Row Number-- */
+.seats-row-number {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 9px;
+    height: 251.71px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 17.8px;
+    opacity: 70%;
+}
+.seats-row-number p {
+    height: 24.15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--bold);
+    font-size: 12px;
+}
+/* --Main Cinema Hall-- */
+.main-cinema-hall {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 305.53px;
+    height: 251.71px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 11px;
+}
+.seat {
+    position: relative;
+    width: 24.15px;
+    height: 24.15px;
+    border-radius: 7.55px;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--extraBold);
+    font-size: 13px;
+}
+/* ##-SeatModles-## */
+.seat-invisible {
+    background-color: var(--bodyColor);
+    z-index: -1;
+    color: var(--bodyColor);
+    cursor: default;
+}
+.empty {
+    background-color: var(--mainWhite);
+    opacity: 80%;
+    cursor: pointer;
+    transition: background-color 0.2s linear, color 0.2s linear;
+}
+.unreservable {
+    background-color: var(--bodyColor);
+    border: 2px solid var(--seatunreservable);
+    color: var(--bodyColor);
+    cursor: default;
+}
+.reserved {
+    background-color: var(--mainGrey);
+    color: var(--mainGrey);
+    cursor: default;
+}
+.selected {
+    background-color: var(--primaryColor);
+    color: rgba(19, 18, 17, 1);
+    cursor: pointer;
+}
+/* ##-Seat Selection Transition-## */
+.empty:hover {
+    background-color: var(--primaryColor);
+    color: rgba(19, 18, 17, 1);
+}
+
+
+
+
+/* ---Cinema Hall information--- */
+.cinema-hall-information {
+    position: absolute;
+    bottom: -72px;
+    width: calc(100% - 24px);
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* --Cinema Hall Capacity-- */
+.cinema-hall-capacity {
+    display: none;
+}
+/* --Seat Modles-- */
+.seat-modles {
+    width: 336px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.seat-modle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+.modle {
+    width: 24px;
+    height: 24px;
+    border-radius: 7.5px;
+}
+.seat-modle p {
+    font-family: var(--bold);
+    font-size: 11px;
+    opacity: 80%;
+}
+.empty-seats {
+    background-color: var(--seatEmpty);
+}
+.selected-seats {
+    background-color: var(--primaryColor);
+}
+
+
+
+
+
+/* ----M.S.P. information---- */
+.MSP-information {
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 24px);
+    height: 253px; /* 319px */
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+/* ---Movie information--- */
+.movie-section {
+    order: 2;
+
+    width: 100%;
+    height: 135px;
+    padding: 16px 12px 0 12px;
+    border-radius: 20px 20px 0 0;
+    background-color: var(--secondaryColor);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.movie-section-center {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 8px;
+}
+.movie-poster {
+    width: 80px;
+    height: 118.75px;
+    border-radius: 6.25px;
+    background-color: var(--mainGrey);
+}
+.moviename-location-and-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 8px;
+}
+.movie-name {
+    font-family: var(--bold);
+    font-size: 17px;
+    letter-spacing: -1.5%;
+}
+.location {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 4px;
+}
+.location p {
+    font-family: var(--demiBold);
+    font-size: 13px;
+    opacity: 80%;
+}
+.date {
+    font-family: var(--bold);
+    font-size: 12px;
+    opacity: 80%;
+    color: var(--primaryColor);
+}
+
+
+
+
+/* ---Selected Seat information--- */
+.selected-seat-section {
+    order: 1;
+    margin-bottom: 8px;
+
+    width: 100%;
+    height: 58px;
+    padding: 17px 12px;
+    border-radius: 20px;
+    background-color: var(--secondaryColor);
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 24px;
+    cursor: default;
+}
+.selected-seat-number {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.selected-seat-number p {
+    color: var(--primaryColor);
+    font-family: var(--bold);
+    font-size: 13px;
+    cursor: pointer;
+}
+.selected-seats-information-list {
+    width: 100%;
+    height: auto;
+    display: none;
+    grid-template-columns: calc(50% - 8px) calc(50% - 8px);
+    grid-gap: 16px;
+}
+.selected-seat {
+    width: 100%;
+    height: 51px;
+    border: 3px solid rgba(255, 255, 255, 0.42);
+    border-radius: 16px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--mainWhite);
+    font-family: var(--demiBold);
+    font-size: 13px;
+}
+
+
+
+
+/* ---Discount Code information--- */
+.discount-code-section {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    z-index: 1;
+    -webkit-animation-name: fadeIn-discount;
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn-discount;
+    animation-duration: 0.4s
+}
+.discount-code-section-content {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 167px;
+    padding: 16px 10px;
+    border-radius: 20px 20px 0 0;
+    background-color: var(--secondaryColor);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-animation-name: slideIn-mobile;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn-mobile;
+    animation-duration: 0.4s
+}
+.discount-close-btn {
+    position: absolute;
+    width: 32px;
+    border: 2.5px solid var(--bodyColor);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.discount-code-header {
+    margin-top: 12px;
+    font-family: var(--extraBold);
+    font-size: 13px;
+}
+.discount-code-input {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+.discount-code {
+    width: 100%;
+    height: 51px;
+    padding: 8px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--bodyColor);
+    color: var(--mainWhite);
+    font-family: var(--bold);
+    font-size: 13px;
+    outline: none;
+}
+.discount-error {
+    border: 3px solid var(--mainRed);
+}
+input[type=text]:focus {
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+.confirm-btn {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 44px;
+    height: 35px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--bodyColor);
+    color: var(--mainWhite);
+    font-family: var(--bold);
+    font-size: 13px;
+    cursor: pointer;
+}
+.confirm-btn:hover {
+    background-color: var(--hover);
+}
+.confirmed {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 24px;
+    height: 24px;
+}
+.warning-error {
+    position: absolute;
+    bottom: -28px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    visibility: hidden;
+}
+.warning-error p {
+    font-family: var(--regular);
+    font-size: 11px;
+    color: var(--mainRed);
+}
+
+
+
+
+/* ---Price information--- */
+.price-section {
+    order: 3;
+
+    width: 100%;
+    height: 118px;
+    padding: 24px 12px 16px 12px;
+    border-radius: 0 0 20px 20px;
+    background-color: var(--secondaryColor);
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 19px 44px;
+    grid-column-gap: 12px;
+    grid-row-gap: 15px;
+    grid-template-areas: 
+    "price price"
+    "discount payment";
+}
+.price-information {
+    grid-area: price;
+
+    width: 100%;
+    height: 19px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.price-information p:nth-child(1){
+    font-family: var(--bold);
+    font-size: 13px;
+}
+.prices {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.new-price {
+    font-family: var(--extraBold);
+    font-size: 13px;
+}
+.prices del,
+.old-price {
+    text-align: center;
+    font-family: var(--demiBold);
+    font-size: 11px;
+    opacity: 40%;
+}
+.discount-btn {
+    grid-area: discount;
+
+    width: 100%;
+    height: 44px;
+    padding: 16px;
+    border: 2px solid rgba(55, 55, 55, 1);
+    border-radius: 10px;
+    background-color: var(--secondaryColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    color: var(--mainWhite);
+    font-family: var(--extraBold);
+    font-size: 13px;
+    cursor: pointer;
+}
+.payment-btn {
+    grid-area: payment;
+
+    width: 100%;
+    height: 44px;
+    padding: 16px 18px;
+    border: 2px solid rgba(55, 55, 55, 1);
+    border-radius: 10px;
+    background-color: var(--secondaryColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--mainWhite);
+    font-family: var(--extraBold);
+    font-size: 13px;
+    opacity: 50%;
+    cursor: default;
+}
+.active {
+    border: none;
+    background-color: var(--primaryColor);
+    color: rgba(31, 31, 31, 1);
+    cursor: pointer;
+    opacity: 100%;
+}
+.active:hover {
+    background-color: rgba(255, 198, 71, 1);
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 345px) {
+    .discount-btn {
+        padding: 16px 14px;
+        font-size: 12px;
+    }
+    .payment-btn {
+        padding: 16px 14px;
+        font-size: 12px;
+    }
+}
+
+
+
+
+
+@media screen and (max-width: 428px) {
+    /* ---Selected Seat information--- */
+    .selected-seats-information-list {
+        grid-template-columns: auto;
+        overflow-y: auto;
+    }
+    .selected-seat {
+        width: calc(100% - 6px);
+    }
+}
+
+
+
+
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    
+    /* ----View of the CinemaHall---- */
+    .view-of-the-cinema-hall {
+        height: calc(100% - 239px);
+    }
+
+
+
+
+
+    /* ----M.S.P. information---- */
+    .MSP-information {
+        height: 151px;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: 151px;
+        grid-row-gap: 8px;
+        grid-template-areas:
+        "movie price";
+    }
+
+
+
+
+    /* ---Movie information--- */
+    .movie-section {
+        grid-area: movie;
+
+        height: 151px;
+        padding: 16px 12px 16px 0;
+        border-radius: 0 20px 20px 0;
+    }
+
+
+
+
+    /* ---Selected Seat information--- */
+    .selected-seat-section {
+        grid-area: selectedSeat;
+    }
+    .selected-seats-information-list {
+        grid-template-columns: calc((100% - 32px) / 3) calc((100% - 32px) / 3) calc((100% - 32px) / 3);
+    }
+    .selected-seat {
+        width: 100%;
+    }
+
+
+
+
+    /* ---Discount Code information--- */
+    .discount-code-section {
+        padding-top: calc((100vh - 150px) / 2);
+        padding-right: calc((100vw - 346px) / 2);
+    }
+    .discount-code-section-content {
+        bottom: auto;
+        width: 346px;
+        height: 150px;
+        border-radius: 20px;
+        justify-content: flex-start;
+        gap: 20px;
+        -webkit-animation-name: slideIn;
+        -webkit-animation-duration: 0.4s;
+        animation-name: slideIn;
+        animation-duration: 0.4s
+    }
+    .discount-close-btn {
+        display: none;
+    }
+    .discount-code-header {
+        margin-top: 0;
+    }
+    .discount-code-input {
+        margin-top: 0;
+    }
+
+
+
+
+    /* ---Price information--- */
+    .price-section {
+        grid-area: price;
+
+        height: 151px;
+        padding: 57px 0 16px 12px;
+        border-radius: 20px 0 0 20px;
+    }
+}
+
+
+
+
+
+@media screen and (min-width: 993px) {
+    /* ----Header---- */
+    .header-center {
+        max-width: 1312px;
+        height: 88px;
+        margin: 40px 32px 0 32px;
+    }
+    /* ---Logo--- */
+    .logo {
+        width: 88px;
+        height: 88px;
+    }
+    /* ---Step Line--- */
+    .step-line-section {
+        width: 633px;
+        height: 67px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .main-line {
+        width: 493px;
+        height: 22px;
+        margin-right: 79px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .circle {
+        width: 21px;
+        height: 21px;
+        border: 4px solid var(--mainGrey);
+        border-radius: 50%;
+        background-color: var(--bodyColor);
+    }
+    #circle-1 {
+        border: 4px solid var(--primaryColor);
+    }
+    .line {
+        width: 214.5px;
+        height: 0;
+        border: 3px solid var(--mainGrey);
+    }
+    .step-name {
+        width: 609px;
+        height: 29px;
+        margin-right: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 105px;
+    }
+    .step-name p {
+        color: var(--mainWhite);
+        font-family: var(--demiBold);
+        font-size: 20px;
+        opacity: 60%;
+    }
+    #step-1 {
+        color: var(--primaryColor);
+        font-family: var(--bold);
+        opacity: 100%;
+    }
+    /* ---BackHome Link--- */
+    .backhome-link {
+        height: 48px;
+        padding: 12px;
+        font-size: 15px;
+    }
+
+
+
+
+    /* ---Toast--- */
+    .toast {
+        top: 48px;
+        width: 517px;
+        height: 68px;
+        margin: 0;
+        padding: 12px 16px;
+        border-radius: 24px;
+    }
+    .show {
+        -webkit-animation: fadein-toast 0.5s, fadeout-toast 0.5s 3.5s;
+        animation: fadein-toast 0.5s, fadeout-toast 0.5s 3.5s;
+    }
+    .toast-img {
+        width: 44px;
+        height: 44px;
+    }
+    .toast-text {
+        font-size: 15px;
+    }
+
+
+
+
+
+    /* -----Seat Selection----- */
+    .seat-selection-section {
+        height: calc(100vh - 128px);
+        max-height: 1224px;
+    }
+    .seat-selection-section-center {
+        max-width: 1312px;
+        height: calc(100% - 65px);
+        margin: 32px 32px 33px 32px;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+
+
+    /* ----View of the CinemaHall---- */
+    .view-of-the-cinema-hall {
+        width: calc(7 * ((100% - 220px) / 12) + 120px);
+        height: 100%;
+        justify-content: flex-start;
+        gap: 32px;
+    }
+    /* ---Cinema Hall--- */
+    .cinema-hall {
+        height: calc(100% - 94px);
+        align-items: center;
+    }
+    .cinema-hall-center {
+        width: 475px;
+        height: 445px;
+    }
+    /* --Cinema Screen-- */
+    .cinema-screen {
+        top: 0;
+        left: -6px;
+        width: 456px;
+        height: 154px;
+    }
+    /* --Seat Row Number-- */
+    .seats-row-number {
+        width: 15px;
+        height: 365px;
+        gap: 28.17px;
+    }
+    .seats-row-number p {
+        height: 28px;
+        font-size: 19.72px;
+    }
+    /* --Main Cinema Hall-- */
+    .main-cinema-hall {
+        width: 443.58px;
+        height: 365.45px;
+    }
+    .row {
+        gap: 16px;
+    }
+    .seat {
+        width: 35.06px;
+        height: 35.06px;
+        border-radius: 10.96px;
+        font-size: 20px;
+    }
+    /* ##-SeatModles-## */
+    .unreservable {
+        border: 3px solid var(--seatunreservable);
+    }
+
+
+
+
+    /* ---Cinema Hall information--- */
+    .cinema-hall-information {
+        position: static;
+        width: 100%;
+        height: 62px;
+        justify-content: space-between;
+        gap: 42px;
+    }
+    /* --Cinema Hall Capacity-- */
+    .cinema-hall-capacity {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .cinema-hall-capacity p {
+        font-family: var(--medium);
+        font-size: 16px;
+    }
+    .cinema-hall-capacity span {
+        font-family: var(--bold);
+    }
+    .number {
+        color: var(--primaryColor);
+    }
+    /* --Seat Modles-- */
+    .seat-modles {
+        width: 269px;
+        justify-content: center;
+        gap: 24px;
+    }
+    .seat-modle {
+        gap: 16px;
+    }
+    .modle {
+        width: 28px;
+        height: 28px;
+        border-radius: 8.75px;
+    }
+    .seat-modle p {
+        font-size: 12px;
+    }
+
+    
+
+
+
+    /* ----M.S.P. information---- */
+    .MSP-information {
+        position: static;
+        width: calc(5 * ((100% - 220px) / 12) + 80px);
+        height: 100%;
+        margin-bottom: 0;
+        overflow-y: auto;
+    }
+
+
+
+
+    /* ---Movie information--- */
+    .movie-section {
+        order: 1;
+
+        width: 100%;
+        height: 196px;
+        padding: 24px 24px 0 24px;
+    }
+    .movie-section-center {
+        width: 100%;
+        gap: 16px;
+    }
+    .movie-poster {
+        width: 117px;
+        min-width: 117px;
+        height: 172px;
+        border-radius: 14px;
+    }
+    .moviename-location-and-date {
+        width: auto;
+        min-width: 193px;
+        gap: 12px;
+    }
+    .movie-name {
+        font-size: 25px;
+    }
+    .location {
+        gap: 6px;
+    }
+    .location p {
+        font-size: 15px;
+    }
+    .date {
+        font-size: 13px;
+    }
+
+
+
+
+    /* ---Selected Seat information--- */
+    .selected-seat-section {
+        order: 2;
+        margin-bottom: 16px;
+
+        height: calc(100% - 423px);
+        min-height: 97px;
+        max-height: 736px;
+        padding: 20px 24px 24px 24px;
+        border-radius: 0 0 20px 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .selected-seat-number {
+        display: none;
+    }
+    .selected-seats-information-list {
+        width: 100%;
+        height: auto;
+        min-height: calc(100% - 44px);
+        display: grid;
+        grid-template-columns: auto;
+        overflow-y: auto;
+    }
+    .selected-seat {
+        width: calc(100% - 8px);
+        height: 53px;
+        padding: 16px;
+        font-size: 15px;
+    }
+
+
+
+
+    /* ---Discount Code information--- */
+    .discount-code-section {
+        order: 3;
+
+        position: static;
+        width: 100%;
+        height: 117px;
+        min-height: 117px;
+        padding-top: 24px;
+        border-radius: 20px 20px 0 0;
+        background-color: var(--secondaryColor);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 0;
+    }
+    .discount-code-section-content {
+        position: static;
+        width: 100%;
+        height: 93px;
+        padding: 0 24px;
+        border-radius: 0;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .discount-close-btn ,
+    .discount-code-header {
+        display: none;
+    }
+    .discount-code-input {
+        margin-top: 0;
+    }
+    .discount-code {
+        height: 61px;
+        padding: 12px;
+        font-size: 15px;
+    }
+    .confirm-btn {
+        display: block;
+        top: 12px;
+        left: 12px;
+        width: 49px;
+        height: 37px;
+        font-size: 15px;
+    }
+    .confirmed  {
+        top: 18.5px;
+        left: 18.5px;
+    }
+    .warning-error {
+        bottom: -32px;
+    }
+    .warning-error p {
+        font-family: var(--bold);
+        font-size: 12px;
+    }
+
+
+
+
+    /* ---Price information--- */
+    .price-section {
+        order: 4;
+
+        height: 94px;
+        padding: 16px 24px 24px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .price-information {
+        width: auto;
+        height: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .price-information p:nth-child(1) {
+        font-family: var(--bold);
+        font-size: 15px;
+    }
+    .new-price {
+        font-family: var(--extraBold);
+        font-size: 15px;
+    }
+    .prices del,
+    .old-price {
+        font-size: 12px;
+    }
+    .discount-btn {
+        display: none;
+    }
+    .payment-btn {
+        width: 174px;
+        height: 100%;
+        padding: 16px 12px;
+        border: 3px solid rgba(55, 55, 55, 1);
+        font-size: 15px;
+    }
+    .active {
+        border: none;
+    }
+}
+
+
+
+
+
+@media screen and (min-width: 1035px) {
+    /* ---Price information--- */
+    .payment-btn {
+        width: 198px;
+        padding: 16px 24px;
+    }
+}
+
+
+
+
+
+@media screen and (min-width: 1200px) {
+    /* -----Seat Selection----- */
+    .seat-selection-section {
+        max-height: 862px;
+    }
+
+
+    
+
+
+    /* ---Selected Seat information--- */
+    .selected-seat-section {
+        max-height: 374px;
+    }
+    .selected-seats-information-list {
+        grid-template-columns: calc(50% - 8px) calc(50% - 8px);
+    }
+}
